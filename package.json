@@ -1,0 +1,23 @@
+{
+  "name": "simplelog",
+  "version": "0.0.0",
+  "description": "simple logging for node.js",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mofax/simplelog.git"
+  },
+  "keywords": [],
+  "author": "Alloys Mila",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mofax/simplelog/issues"
+  },
+  "homepage": "https://github.com/mofax/simplelog#readme"
+}
