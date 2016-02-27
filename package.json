@@ -16,6 +16,10 @@
   "keywords": [],
   "author": "Alloys Mila",
   "license": "MIT",
+  "engines": {
+    "node": ">= 4.0.0",
+    "iojs": ">= 1.0.0"
+  },
   "bugs": {
     "url": "https://github.com/mofax/simplelog/issues"
   },
