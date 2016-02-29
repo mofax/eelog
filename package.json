@@ -4,7 +4,7 @@
   "description": "simple logging for node.js",
   "main": "lib/index.js",
   "directories": {
-    "test": "test"
+    "test": "__test__"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/mofax/simplelog/issues"
   },
-  "homepage": "https://github.com/mofax/simplelog#readme"
+  "homepage": "https://github.com/mofax/simplelog#readme",
+  "dependencies": {
+    "color": "^0.11.1"
+  }
 }
