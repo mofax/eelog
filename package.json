@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mofax/simplelog.git"
+    "url": "git+https://github.com/mofax/eelog.git"
   },
   "keywords": [],
   "author": "Alloys Mila",
@@ -21,9 +21,9 @@
     "iojs": ">= 1.0.0"
   },
   "bugs": {
-    "url": "https://github.com/mofax/simplelog/issues"
+    "url": "https://github.com/mofax/eelog/issues"
   },
-  "homepage": "https://github.com/mofax/simplelog#readme",
+  "homepage": "https://github.com/mofax/eelog#readme",
   "dependencies": {
     "color": "^0.11.1"
   }
