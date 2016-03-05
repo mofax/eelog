@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/mofax/eelog#readme",
   "dependencies": {
-    "color": "^0.11.1"
+    "colors": "^1.1.2"
   }
 }
