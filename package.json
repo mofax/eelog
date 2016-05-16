@@ -2,13 +2,15 @@
   "name": "eelog",
   "version": "1.0.0",
   "description": "a middleware based logging library for node and the browser",
-  "main": "lib/eelog.js",
+  "main": "lib/eelog-cjs.js",
   "jsnext:main": "lib/eelog.js",
   "directories": {
     "test": "__tests__"
   },
   "scripts": {
-    "rollup": "rollup -c",
+    "rollup-cjs": "rollup -c rollup.config-cjs.js",
+    "rollup-jsnext": "rollup -c",
+    "rollup": "npm run rollup-cjs && npm run rollup-jsnext",
     "test": "jest"
   },
   "repository": {
