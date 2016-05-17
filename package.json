@@ -1,6 +1,6 @@
 {
   "name": "eelog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a middleware based logging library for node and the browser",
   "main": "lib/eelog-cjs.js",
   "jsnext:main": "lib/eelog.js",
