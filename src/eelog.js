@@ -28,7 +28,16 @@ class Eelog {
         // set up the log level functions
         allowedLevels.forEach(level => {
             ctx[level] = function logLevel(meta, msg) {
+                // check if a level is set, and only run items above that level
+                if (this.options.level) {
+                    let index = allowedLevels.indexOf(this.options.level);
+                    let myIndex = allowedLevels.indexOf(level);
 
+                    if (index > myIndex) {
+                        return void 0;
+                    }
+                }
+                
                 // if an error object was passed, print the stack trace
                 if (meta instanceof Error) {
                     ctx.logger(level, {}, meta.stack);
