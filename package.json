@@ -4,7 +4,9 @@
   "description": "a middleware based logging library for node and the browser",
   "main": "dist/eelog.js",
   "types": "dist/eelog.d.ts",
-  "scripts": {},
+  "scripts": {
+    "prepublish": "yarn tsc"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mofax/eelog.git"

@@ -14,7 +14,7 @@ export function next(list: any[], data: any, index: number) {
   }
 
   let fn = list[index];
-  let result = fn.call(null, data, function nextCallback() {
+  let result = fn(data, function nextCallback() {
     next(list, data, index + 1);
   });
 }
