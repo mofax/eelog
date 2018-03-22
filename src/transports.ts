@@ -9,10 +9,7 @@ import { format } from "./tools";
  * @return {null}
  */
 
-export function consoleTransport(
-  logData: { [key: string]: string },
-  next: Function
-) {
+function consoleTransport(logData: { [key: string]: string }, next: Function) {
   let options = Object.assign({}, logData); // we are deep cloning logData so that we don't modify the original
   let level: Function;
 
@@ -20,7 +17,7 @@ export function consoleTransport(
     level = console.info;
   } else if (logData.level === "error") {
     level = console.error;
-  } else if ((logData.level = "warn")) {
+  } else if (logData.level === "warn") {
     level = console.warn;
   } else {
     level = console.log;
@@ -49,3 +46,31 @@ export function consoleTransport(
   log.call(null, toLog);
   next();
 }
+
+/**
+ * an eelog transport that prints to the console but in raw json
+ *
+ * @param {object} logData - object passed in from eelog
+ * @param {Function} next - function to trigger the next middlewareß
+ * @return {null}
+ */
+
+function consoleLogJson(logData: { [key: string]: string }, next: Function) {
+  let str = JSON.stringify(logData);
+  let level: Function;
+
+  if (logData.level === "info") {
+    level = console.info;
+  } else if (logData.level === "error") {
+    level = console.error;
+  } else if (logData.level === "warn") {
+    level = console.warn;
+  } else {
+    level = console.log;
+  }
+
+  level.call(null, str);
+  next();
+}
+
+export { consoleTransport, consoleLogJson };

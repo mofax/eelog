@@ -22,3 +22,15 @@ console.log("\n");
 log2.info("this is level info, should print");
 log2.debug("debug is below info level, therefore is disabled");
 log2.error("this is an error");
+log2.info({ gray: "goose" }, "this is level info, should print");
+
+let log3 = new Eelog({
+  console: "json"
+});
+
+console.log("\njson style loggin here \n");
+
+log3.info("this is level info, should print");
+log3.debug("debug is below info level, therefore is disabled");
+log3.error("this is an error %s", "string");
+log3.info({ gray: "goose" }, "this is level info, should print");

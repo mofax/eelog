@@ -1,10 +1,11 @@
 "use strict";
 
-import { consoleTransport } from "./transports";
+import * as os from "os";
+import { consoleTransport, consoleLogJson } from "./transports";
 import { next, format } from "./tools";
 
 export type EelogOptions = {
-  console?: boolean;
+  console?: string;
   name?: string;
 };
 
@@ -28,8 +29,13 @@ class Eelog {
     this.middleware = [];
 
     // if console logging isnt explicitly turned off, then do use the console transport
-    if (!(this.options.console === false)) {
+    if (
+      this.options.console === "formatted" ||
+      this.options.console === undefined
+    ) {
       this.use(consoleTransport);
+    } else if (this.options.console === "json") {
+      this.use(consoleLogJson);
     }
   }
   verb(...args: any[]) {
@@ -76,6 +82,7 @@ class Eelog {
   logger(level: string, _meta: { [key: string]: any }, message: string) {
     let meta = Object.assign({}, _meta);
 
+    meta.hostname = os.hostname();
     meta.name = this.options.name;
     meta.pid = process.pid;
     meta.timestamp = new Date().toISOString();
