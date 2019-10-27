@@ -22,7 +22,7 @@ export function logFormat(meta: any) {
     return strs.join(" ");
 }
 
-export function buildMeta(name: string, msg: string, data: any) {
+export function buildMeta(name: string, msg: string, data: any = {}) {
     const meta = {
         msg,
         timestamp: new Date().toISOString(),
