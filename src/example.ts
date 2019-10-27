@@ -2,14 +2,13 @@
 
 import Eelog from "./eelog";
 
-let log = new Eelog({
-    console: true
+const log = new Eelog({
+    console: true,
 });
 
 log.info("yes! it is logging");
 log.debug("logging object meta", { calling: "autobots", who: "optimus" });
 log.error("this is a baad error!");
-
 
 // let log2 = new Eelog({});
 
