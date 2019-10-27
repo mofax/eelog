@@ -1,36 +1,34 @@
-"use strict";
+import * as os from 'os'
 
-/**
- * loops through the middleware, calling them with the data and next
- *
- * @param {[]} list - the list of middlewares
- * @param {Object} data - the data we are passing into the middleware
- * @param {number} index - the index, of the middleware we want to call, on the list
- */
-export function next(list: any[], data: any, index: number) {
-  // we only need to call if the index in there
-  if (index >= list.length) {
-    return;
-  }
-
-  let fn = list[index];
-  let result = fn(data, function nextCallback() {
-    next(list, data, index + 1);
-  });
+export const logLevels: { [index: string]: number } = {
+    verb: 1,
+    debug: 2,
+    info: 3,
+    warn: 4,
+    error: 5,
+    fatal: 6
 }
 
-/**
- * fast format - https://github.com/knowledgecode/fast-format
- */
-export function format(...args: any[]) {
-  var i,
-    len,
-    argc = args.length,
-    format = args[0],
-    v = (format + "").split("%s"),
-    r = argc ? v[0] : "";
-  for (i = 1, len = v.length, argc--; i < len; i++) {
-    r += (i > argc ? "%s" : arguments[i]) + v[i];
-  }
-  return r;
+export function logFormat(meta: any) {
+    const keys = Object.keys(meta);
+    let strs = [];
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i]
+        if (meta.hasOwnProperty(key)) {
+            strs.push(`${key}=${meta[key]}`);
+        }
+    }
+    return strs.join(' ');
+}
+
+export function buildMeta(name: string, msg: string, data: any) {
+    const meta = {
+        msg,
+        timestamp: new Date().toISOString(),
+        hostname: os.hostname(),
+        name: name,
+        pid: process.pid,
+        ...data
+    };
+    return meta;
 }
