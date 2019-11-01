@@ -25,10 +25,7 @@ export function logFormat(meta: any) {
 export function buildMeta(name: string, msg: string, data: any = {}) {
     const meta = {
         msg,
-        timestamp: new Date().toISOString(),
-        hostname: os.hostname(),
         name,
-        pid: process.pid,
         ...data,
     };
     return meta;
