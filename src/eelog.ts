@@ -4,6 +4,8 @@ function leveler(level: string, msg: string, data: any) {
     const meta = buildMeta(this.name, `"${msg}"`, data);
     const str = logFormat(meta);
     const levelNumber = logLevels[level];
+    if (levelNumber < logLevels[this.level]) { return; }
+
     if (this.console === true) {
         /* tslint:disable:no-console */
         const func = levelNumber > 3 ? console.error : console.log;
