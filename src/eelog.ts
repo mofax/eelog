@@ -1,11 +1,16 @@
+import { Writable } from "stream";
 import { buildMeta, logFormat, logLevels } from "./tools";
 
 function leveler(level: string, msg: string, data: any) {
-    const meta = buildMeta(this.name, `"${msg}"`, data);
-    const str = logFormat(meta);
     const levelNumber = logLevels[level];
     if (levelNumber < logLevels[this.level]) { return; }
 
+    const meta = buildMeta(this.name, `"${msg}"`, data);
+    const str = logFormat(meta);
+
+    if (this.canStream === true) {
+        this.stream.write(str + "\n");
+    }
     if (this.console === true) {
         /* tslint:disable:no-console */
         const func = levelNumber > 3 ? console.error : console.log;
@@ -18,6 +23,8 @@ export interface IOptions {
     console?: boolean;
     name?: string;
     level?: string;
+    canStream?: boolean;
+    stream?: Writable;
 }
 
 class EeLogger {
