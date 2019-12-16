@@ -10,9 +10,8 @@ log.info("yes! it is logging");
 log.debug("logging object meta", { calling: "autobots", who: "optimus" });
 log.error("this is a baad error!");
 
-// let log2 = new Eelog({});
-
-// console.log("\n");
+const log2 = new Eelog({});
+log2.info("console is not set to true, will not print");
 
 // log2.info("this is level info, should print");
 // log2.debug("debug is below info level, therefore is disabled");

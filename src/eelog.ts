@@ -4,10 +4,12 @@ function leveler(level: string, msg: string, data: any) {
     const meta = buildMeta(this.name, `"${msg}"`, data);
     const str = logFormat(meta);
     const levelNumber = logLevels[level];
-    /* tslint:disable:no-console */
-    const func = levelNumber > 3 ? console.error : console.log;
-    /* tslint:enable:no-console */
-    func(str);
+    if (this.console === true) {
+        /* tslint:disable:no-console */
+        const func = levelNumber > 3 ? console.error : console.log;
+        /* tslint:enable:no-console */
+        func(str);
+    }
 }
 
 export interface IOptions {
@@ -21,7 +23,7 @@ class EeLogger {
 
     constructor(options: IOptions) {
         const defaultOptions = {
-            console: true,
+            console: false,
             level: "info",
             name: "eelog",
         };
