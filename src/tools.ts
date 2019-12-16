@@ -1,5 +1,3 @@
-import * as os from "os";
-
 /* tslint:disable:object-literal-sort-keys */
 export const logLevels: { [index: string]: number } = {
     verb: 1,

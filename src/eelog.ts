@@ -1,12 +1,24 @@
 import { Writable } from "stream";
 import { buildMeta, logFormat, logLevels } from "./tools";
 
+function logStringCreator(meta: any, format: string): string {
+    switch (format) {
+        case "logfmt":
+            return logFormat(meta);
+        case "json": {
+            return JSON.stringify(meta);
+        }
+        default:
+            throw new Error(`eelog: format ${format} is not supported`);
+    }
+}
+
 function leveler(level: string, msg: string, data: any) {
     const levelNumber = logLevels[level];
     if (levelNumber < logLevels[this.level]) { return; }
 
     const meta = buildMeta(this.name, `"${msg}"`, data);
-    const str = logFormat(meta);
+    const str = logStringCreator(meta, this.format)
 
     if (this.canStream === true) {
         this.stream.write(str + "\n");
@@ -21,6 +33,7 @@ function leveler(level: string, msg: string, data: any) {
 
 export interface IOptions {
     console?: boolean;
+    format?: string;
     name?: string;
     level?: string;
     canStream?: boolean;
@@ -33,6 +46,7 @@ class EeLogger {
     constructor(options: IOptions) {
         const defaultOptions = {
             console: false,
+            format: "logfmt",
             level: "info",
             name: "eelog",
         };
